@@ -805,7 +805,7 @@ function Tuto({ onClose }: { onClose: () => void }) {
   const isLast = step === steps.length - 1
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-[#1A1512]/80 backdrop-blur-sm p-4">
+    <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-[#1A1512]/80 backdrop-blur-sm p-4">
       <div className="bg-[#F3E9D6] border-2 border-[#1A1512] max-w-sm w-full p-6 text-center">
         <span className="text-5xl block mb-4">{current.emoji}</span>
         <h2 className="titulo text-xl mb-3">{current.titre}</h2>
