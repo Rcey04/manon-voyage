@@ -1068,6 +1068,10 @@ function PageContent() {
           </p>
         </section>
       )}
+      {/* ── SIGNATURE ── */}
+      <footer className="pt-8 pb-4 text-center opacity-30 text-xs tracking-wide">
+        Fait par Rojhat avec amour
+      </footer>
     </main>
     </>
   )
