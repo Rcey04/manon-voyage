@@ -769,6 +769,78 @@ function JournalSection({
   )
 }
 
+// ─── Tuto onboarding ───
+function Tuto({ onClose }: { onClose: () => void }) {
+  const [step, setStep] = useState(0)
+
+  const steps = [
+    {
+      emoji: "🎴",
+      titre: "Les cartes",
+      texte: "Chaque étape de ton voyage a sa carte. Elles se déverrouillent automatiquement quand tu arrives à destination. Clique dessus pour lire le message.",
+    },
+    {
+      emoji: "🗺️",
+      titre: "La carte",
+      texte: "Une carte interactive avec ton itinéraire. Clique sur les points pour voir des fun facts sur chaque lieu.",
+    },
+    {
+      emoji: "📖",
+      titre: "Le journal",
+      texte: "Ton journal de bord. Chaque jour tu peux écrire ce que tu veux, choisir ton humeur et ajouter des photos. Tout est sauvegardé automatiquement.",
+    },
+    {
+      emoji: "🚪",
+      titre: "Les portes",
+      texte: "En bas, des messages à ouvrir selon ton humeur du moment. Genre quand t'as le mal du pays, quand tu doutes, ou quand c'est le plus beau jour du voyage.",
+    },
+    {
+      emoji: "❤️",
+      titre: "C'est parti",
+      texte: "C'est ton espace à toi Manon. Profite de chaque jour. Je t'aime.",
+    },
+  ]
+
+  const current = steps[step]
+  const isLast = step === steps.length - 1
+
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-[#1A1512]/80 backdrop-blur-sm p-4">
+      <div className="bg-[#F3E9D6] border-2 border-[#1A1512] max-w-sm w-full p-6 text-center">
+        <span className="text-5xl block mb-4">{current.emoji}</span>
+        <h2 className="titulo text-xl mb-3">{current.titre}</h2>
+        <p className="prose-lettre text-sm opacity-70 mb-6">{current.texte}</p>
+
+        <div className="flex items-center justify-between">
+          <div className="flex gap-1.5">
+            {steps.map((_, i) => (
+              <div
+                key={i}
+                className="w-2 h-2 rounded-full transition-all"
+                style={{ background: i === step ? "#1A1512" : "#1A151230" }}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={() => {
+              if (isLast) {
+                localStorage.setItem("manon-tuto-done", "1")
+                onClose()
+              } else {
+                setStep(step + 1)
+              }
+            }}
+            className="titulo text-sm px-5 py-2 bg-[#1A1512] text-[#F3E9D6] hover:bg-[#2A2318] transition-colors"
+          >
+            {isLast ? "C'est parti !" : "Suivant"}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ─── Page ───
 function PageContent() {
   const searchParams = useSearchParams()
@@ -777,6 +849,11 @@ function PageContent() {
   const [vueCarte, setVueCarte] = useState<"mexique" | "nicaragua">("mexique")
   const [nouvelles, setNouvelles] = useState<Set<number>>(new Set())
   const [journalEntries, setJournalEntries] = useState<Record<string, JournalEntry>>({})
+  const [showTuto, setShowTuto] = useState(false)
+
+  useEffect(() => {
+    if (!localStorage.getItem("manon-tuto-done")) setShowTuto(true)
+  }, [])
 
   const aujourdhui = (() => {
     const param = searchParams.get("jour")
@@ -860,6 +937,8 @@ function PageContent() {
   }
 
   return (
+    <>
+    {showTuto && <Tuto onClose={() => setShowTuto(false)} />}
     <main className="max-w-[620px] mx-auto px-4 pb-16">
       {/* ── EN-TÊTE ── */}
       <header className="pt-10 pb-6 text-left">
@@ -990,6 +1069,7 @@ function PageContent() {
         </section>
       )}
     </main>
+    </>
   )
 }
 
