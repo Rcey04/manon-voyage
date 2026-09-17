@@ -19,6 +19,10 @@ const newsreader = Newsreader({
 export const metadata: Metadata = {
   title: "Bon voyage, Manon",
   description: "43 jours, deux pays, onze cartes.",
+  icons: {
+    icon: "/favicon.png",
+    apple: "/apple-icon.png",
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
