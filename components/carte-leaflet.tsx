@@ -96,16 +96,17 @@ export default function CarteLeaflet({
       attributionControl: false,
     })
 
-    // Tiles : Stadia Stamen Toner Lite (vintage look, gratuit)
-    L.tileLayer("https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png", {
+    // Tiles OpenStreetMap classiques
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 12,
       minZoom: 4,
+      subdomains: ["a", "b", "c"],
     }).addTo(map)
 
-    // Sepia vintage filter
+    // Filtre vintage sépia
     const tilePane = map.getPane("tilePane")
     if (tilePane) {
-      tilePane.style.filter = "sepia(0.3) contrast(0.9) brightness(0.95)"
+      tilePane.style.filter = "sepia(0.35) brightness(0.92) contrast(0.95)"
     }
 
     map.fitBounds([
