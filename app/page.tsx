@@ -851,8 +851,10 @@ function PageContent() {
   const [journalEntries, setJournalEntries] = useState<Record<string, JournalEntry>>({})
   const [showTuto, setShowTuto] = useState(false)
 
+  const isAdmin = searchParams.get("admin") === "rojhat"
+
   useEffect(() => {
-    if (!localStorage.getItem("manon-tuto-done")) setShowTuto(true)
+    if (!localStorage.getItem("manon-tuto-done") && !isAdmin) setShowTuto(true)
   }, [])
 
   const aujourdhui = (() => {
@@ -917,6 +919,7 @@ function PageContent() {
   const estApres = aujourdhui >= DATE_RETOUR
 
   function estDeverrouille(etape: Etape) {
+    if (isAdmin) return true
     if (etape.unlock === "ouvert") return true
     return aujourdhui >= new Date(etape.unlock)
   }
@@ -939,6 +942,61 @@ function PageContent() {
   return (
     <>
     {showTuto && <Tuto onClose={() => setShowTuto(false)} />}
+    {isAdmin && (
+      <div className="bg-[#1A1512] text-[#F3E9D6] text-xs px-4 py-2 flex items-center justify-between sticky top-0 z-[9999]">
+        <span className="titulo">ADMIN</span>
+        <div className="flex items-center gap-3">
+          <span className="opacity-50">Simuler :</span>
+          {[
+            ["Avant", "2026-09-01"],
+            ["Monterrey", "2026-09-05"],
+            ["Oaxaca", "2026-09-10"],
+            ["Puerto", "2026-09-14"],
+            ["Mexico", "2026-09-20"],
+            ["Vol", "2026-09-24"],
+            ["Managua", "2026-09-26"],
+            ["Ometepe", "2026-09-30"],
+            ["SJDS", "2026-10-03"],
+            ["Retour M.", "2026-10-06"],
+            ["Vol ret.", "2026-10-14"],
+            ["Après", "2026-10-16"],
+          ].map(([label, date]) => (
+            <a
+              key={date}
+              href={`?admin=rojhat&jour=${date}`}
+              className="hover:text-[#E8A712] transition-colors hidden sm:inline"
+            >
+              {label}
+            </a>
+          ))}
+          <select
+            className="sm:hidden bg-[#2A2318] text-[#F3E9D6] border-none text-xs px-1 py-0.5"
+            value={searchParams.get("jour") || ""}
+            onChange={(e) => {
+              window.location.href = `?admin=rojhat&jour=${e.target.value}`
+            }}
+          >
+            <option value="">Aujourd&apos;hui</option>
+            {[
+              ["Avant", "2026-09-01"],
+              ["Monterrey", "2026-09-05"],
+              ["Oaxaca", "2026-09-10"],
+              ["Puerto", "2026-09-14"],
+              ["Mexico", "2026-09-20"],
+              ["Vol", "2026-09-24"],
+              ["Managua", "2026-09-26"],
+              ["Ometepe", "2026-09-30"],
+              ["SJDS", "2026-10-03"],
+              ["Retour M.", "2026-10-06"],
+              ["Vol ret.", "2026-10-14"],
+              ["Après", "2026-10-16"],
+            ].map(([label, date]) => (
+              <option key={date} value={date}>{label}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+    )}
     <main className="max-w-[620px] mx-auto px-4 pb-16">
       {/* ── EN-TÊTE ── */}
       <header className="pt-10 pb-6 text-left">
