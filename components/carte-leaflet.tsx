@@ -96,16 +96,16 @@ export default function CarteLeaflet({
       attributionControl: false,
     })
 
-    // OpenStreetMap dark-ish via positron + CSS invert
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    // Tiles : Stadia Stamen Toner Lite (vintage look, gratuit)
+    L.tileLayer("https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png", {
       maxZoom: 12,
       minZoom: 4,
     }).addTo(map)
 
-    // Dark mode via CSS filter on tile pane
+    // Sepia vintage filter
     const tilePane = map.getPane("tilePane")
     if (tilePane) {
-      tilePane.style.filter = "invert(1) hue-rotate(180deg) brightness(0.7) contrast(1.2) sepia(0.3)"
+      tilePane.style.filter = "sepia(0.3) contrast(0.9) brightness(0.95)"
     }
 
     map.fitBounds([
