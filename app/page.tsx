@@ -866,21 +866,6 @@ function PageContent() {
     return new Date()
   })()
 
-  // Track visit
-  useEffect(() => {
-    if (isAdmin) return
-    fetch("/api/track", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        site: "manon-voyage",
-        path: window.location.pathname,
-        referrer: document.referrer || null,
-        userAgent: navigator.userAgent,
-      }),
-    }).catch(() => {})
-  }, [])
-
   // Load journal from localStorage
   useEffect(() => {
     setJournalEntries(loadJournal())
