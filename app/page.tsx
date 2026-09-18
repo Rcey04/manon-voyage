@@ -769,6 +769,112 @@ function JournalSection({
   )
 }
 
+// ─── Popup Art Mexicain ───
+function PopupArtMexicain({ onClose }: { onClose: () => void }) {
+  const [step, setStep] = useState(0)
+
+  const slides = [
+    {
+      titre: "L'art graphique mexicain",
+      sousTitre: "Un mini cours rien que pour toi",
+      contenu: "Le Mexique a une des traditions graphiques les plus riches au monde. Des fresques aztèques aux murales de Diego Rivera, en passant par les cartes de Lotería que tu vois sur ce site... Voilà un petit tour d'horizon pour que tu puisses frimer devant Alex.",
+      couleur: "#D6301F",
+    },
+    {
+      titre: "La Lotería 🎴",
+      sousTitre: "Née en 1887",
+      contenu: "Les cartes de Lotería c'est le bingo mexicain. 54 cartes illustrées (le soleil, la lune, le diable, la sirène...) avec un style naïf ultra reconnaissable. Chaque famille mexicaine en a un jeu. Le style graphique — contours épais, couleurs saturées, composition centrée — est devenu iconique. C'est pour ça que ce site est construit comme une planche de Lotería.",
+      couleur: "#E8A712",
+    },
+    {
+      titre: "Le Muralisme 🎨",
+      sousTitre: "Rivera, Orozco, Siqueiros",
+      contenu: "Dans les années 1920, le gouvernement mexicain a demandé à des artistes de peindre l'histoire du pays sur les murs des bâtiments publics. Diego Rivera (le mari de Frida Kahlo), José Clemente Orozco et David Alfaro Siqueiros ont créé des fresques gigantesques. Tu en verras sûrement à Mexico City — le Palacio Nacional en est couvert.",
+      couleur: "#1E7A4C",
+    },
+    {
+      titre: "Le Papel Picado ✂️",
+      sousTitre: "L'art du papier découpé",
+      contenu: "Les guirlandes de papier coloré découpé que tu vois partout au Mexique, c'est du papel picado. Artisanat préhispanique, chaque motif est découpé à la main au ciseau dans du papier de soie. On les utilise pour les fêtes, le Día de los Muertos, les mariages... Regarde bien en haut de ce site, y'en a aussi.",
+      couleur: "#D6301F",
+    },
+    {
+      titre: "Les Alebrijes 🐉",
+      sousTitre: "Créatures fantastiques",
+      contenu: "Des sculptures en bois peintes de couleurs psychédéliques qui représentent des animaux fantastiques — mi-dragon, mi-jaguar, mi-n'importe-quoi. Inventés en 1936 par Pedro Linares après un rêve fiévreux. Oaxaca est LA ville des alebrijes. Si t'en vois un, ramène-le-moi (pas trop gros stp la valise est déjà pleine).",
+      couleur: "#E8A712",
+    },
+    {
+      titre: "Maintenant tu sais 🎓",
+      sousTitre: "",
+      contenu: "Voilà, t'as de quoi briller en soirée. Quand tu verras une fresque murale à Mexico, des cartes de Lotería dans un marché ou du papel picado dans une rue, tu sauras d'où ça vient. Profite bien de toute cette beauté bb.",
+      couleur: "#1E7A4C",
+    },
+  ]
+
+  const current = slides[step]
+  const isLast = step === slides.length - 1
+
+  return (
+    <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-[#1A1512]/85 backdrop-blur-sm p-4">
+      <div className="bg-[#F3E9D6] border-2 border-[#1A1512] max-w-md w-full overflow-hidden">
+        {/* Barre de couleur en haut */}
+        <div className="h-2 transition-colors duration-300" style={{ background: current.couleur }} />
+
+        <div className="p-6">
+          <h2 className="titulo text-lg" style={{ color: current.couleur }}>
+            {current.titre}
+          </h2>
+          {current.sousTitre && (
+            <p className="text-xs uppercase tracking-widest opacity-40 mt-1">{current.sousTitre}</p>
+          )}
+
+          <p className="prose-lettre text-sm opacity-75 mt-4 leading-relaxed">
+            {current.contenu}
+          </p>
+
+          <div className="flex items-center justify-between mt-6">
+            <div className="flex gap-1.5">
+              {slides.map((_, i) => (
+                <div
+                  key={i}
+                  className="w-2 h-2 rounded-full transition-all"
+                  style={{ background: i === step ? current.couleur : "#1A151520" }}
+                />
+              ))}
+            </div>
+
+            <div className="flex gap-2">
+              {step > 0 && (
+                <button
+                  onClick={() => setStep(step - 1)}
+                  className="titulo text-xs px-3 py-1.5 border border-[#1A151520] hover:bg-[#1A151510] transition-colors"
+                >
+                  ←
+                </button>
+              )}
+              <button
+                onClick={() => {
+                  if (isLast) {
+                    localStorage.setItem("manon-art-popup-2026-09-19", "1")
+                    onClose()
+                  } else {
+                    setStep(step + 1)
+                  }
+                }}
+                className="titulo text-xs px-4 py-1.5 text-[#F3E9D6] transition-colors"
+                style={{ background: current.couleur }}
+              >
+                {isLast ? "Merci prof !" : "Suivant"}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ─── Tuto onboarding ───
 function Tuto({ onClose }: { onClose: () => void }) {
   const [step, setStep] = useState(0)
@@ -850,12 +956,27 @@ function PageContent() {
   const [nouvelles, setNouvelles] = useState<Set<number>>(new Set())
   const [journalEntries, setJournalEntries] = useState<Record<string, JournalEntry>>({})
   const [showTuto, setShowTuto] = useState(false)
+  const [showArtPopup, setShowArtPopup] = useState(false)
 
   const isAdmin = searchParams.get("admin") === "rojhat"
 
   useEffect(() => {
     if (!localStorage.getItem("manon-tuto-done") && !isAdmin) setShowTuto(true)
   }, [])
+
+  // Popup art mexicain — apparaît le 19 septembre 2026
+  useEffect(() => {
+    const now = new Date()
+    const param = new URLSearchParams(window.location.search).get("jour")
+    const jour = param || now.toISOString().split("T")[0]
+    if (jour === "2026-09-19" && !localStorage.getItem("manon-art-popup-2026-09-19")) {
+      // Attendre que le tuto soit fermé
+      const timer = setTimeout(() => {
+        if (localStorage.getItem("manon-tuto-done")) setShowArtPopup(true)
+      }, 2000)
+      return () => clearTimeout(timer)
+    }
+  }, [showTuto])
 
   const aujourdhui = (() => {
     const param = searchParams.get("jour")
@@ -942,6 +1063,7 @@ function PageContent() {
   return (
     <>
     {showTuto && <Tuto onClose={() => setShowTuto(false)} />}
+    {showArtPopup && <PopupArtMexicain onClose={() => setShowArtPopup(false)} />}
     {isAdmin && (
       <div className="bg-[#1A1512] text-[#F3E9D6] text-xs px-4 py-2 flex items-center justify-between sticky top-0 z-[9999]">
         <span className="titulo">ADMIN</span>
