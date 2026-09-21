@@ -803,15 +803,24 @@ function PopupManova({ onClose }: { onClose: () => void }) {
             ))}
           </div>
 
-          <button
-            onClick={() => {
-              if (isLast) onClose()
-              else setSlide(slide + 1)
-            }}
-            className="mt-3 titulo text-xs px-5 py-2 bg-[#D6301F] text-[#F3E9D6] hover:bg-[#b5281a] transition-colors"
-          >
-            {isLast ? "VAMOS !!!" : "SIGUIENTE →"}
-          </button>
+          <div className="flex items-center justify-center gap-2 mt-3">
+            <a
+              href={current.src}
+              download={current.titre + ".jpg"}
+              className="titulo text-xs px-4 py-2 border border-[#1A151520] hover:bg-[#1A151510] transition-colors"
+            >
+              Télécharger
+            </a>
+            <button
+              onClick={() => {
+                if (isLast) onClose()
+                else setSlide(slide + 1)
+              }}
+              className="titulo text-xs px-5 py-2 bg-[#D6301F] text-[#F3E9D6] hover:bg-[#b5281a] transition-colors"
+            >
+              {isLast ? "VAMOS !!!" : "SIGUIENTE →"}
+            </button>
+          </div>
         </div>
       </div>
     </div>
