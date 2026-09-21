@@ -769,6 +769,55 @@ function JournalSection({
   )
 }
 
+// ─── Popup Manova Lucha ───
+function PopupManova({ onClose }: { onClose: () => void }) {
+  const [slide, setSlide] = useState(0)
+
+  const images = [
+    { src: "/img/manova-lucha.jpg", titre: "MANOVA LA GRANDE", sous: "La légende de la Lucha Libre" },
+    { src: "/img/lucha-amigas.jpg", titre: "LAS AMIGAS", sous: "Le duo invincible" },
+  ]
+
+  const current = images[slide]
+  const isLast = slide === images.length - 1
+
+  return (
+    <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-[#1A1512]/90 backdrop-blur-sm p-4">
+      <div className="bg-[#F3E9D6] border-2 border-[#1A1512] max-w-sm w-full overflow-hidden text-center">
+        <img
+          src={current.src}
+          alt={current.titre}
+          className="w-full"
+        />
+        <div className="p-4">
+          <h2 className="titulo text-lg text-[#D6301F]">{current.titre}</h2>
+          <p className="prose-lettre text-xs opacity-60 mt-1">{current.sous}</p>
+
+          <div className="flex items-center justify-center gap-2 mt-3">
+            {images.map((_, i) => (
+              <div
+                key={i}
+                className="w-2 h-2 rounded-full transition-all"
+                style={{ background: i === slide ? "#D6301F" : "#1A151520" }}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={() => {
+              if (isLast) onClose()
+              else setSlide(slide + 1)
+            }}
+            className="mt-3 titulo text-xs px-5 py-2 bg-[#D6301F] text-[#F3E9D6] hover:bg-[#b5281a] transition-colors"
+          >
+            {isLast ? "VAMOS !!!" : "SIGUIENTE →"}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ─── Popup Art Mexicain ───
 function PopupArtMexicain({ onClose }: { onClose: () => void }) {
   const [step, setStep] = useState(0)
@@ -1078,30 +1127,7 @@ function PageContent() {
     <>
     {showTuto && <Tuto onClose={() => setShowTuto(false)} />}
     {showArtPopup && <PopupArtMexicain onClose={() => setShowArtPopup(false)} />}
-    {showManova && (
-      <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-[#1A1512]/90 backdrop-blur-sm p-4">
-        <div className="bg-[#F3E9D6] border-2 border-[#1A1512] max-w-sm w-full overflow-hidden text-center">
-          <img
-            src="/img/manova-lucha.jpg"
-            alt="Manova La Grande"
-            className="w-full"
-          />
-          <div className="p-4">
-            <h2 className="titulo text-lg text-[#D6301F]">MANOVA LA GRANDE</h2>
-            <p className="prose-lettre text-xs opacity-60 mt-1">La légende de la Lucha Libre</p>
-            <button
-              onClick={() => {
-                localStorage.setItem("manon-manova-popup", "1")
-                setShowManova(false)
-              }}
-              className="mt-4 titulo text-xs px-5 py-2 bg-[#D6301F] text-[#F3E9D6] hover:bg-[#b5281a] transition-colors"
-            >
-              VAMOS !!!
-            </button>
-          </div>
-        </div>
-      </div>
-    )}
+    {showManova && <PopupManova onClose={() => { localStorage.setItem("manon-manova-popup", "1"); setShowManova(false) }} />}
     {isAdmin && (
       <div className="bg-[#1A1512] text-[#F3E9D6] text-xs px-4 py-2 flex items-center justify-between sticky top-0 z-[9999]">
         <span className="titulo">ADMIN</span>
