@@ -775,39 +775,39 @@ function PopupArtMexicain({ onClose }: { onClose: () => void }) {
 
   const slides = [
     {
-      titre: "L'art graphique mexicain",
+      titre: "Le design mexicain",
       sousTitre: "Un mini cours rien que pour toi",
-      contenu: "Le Mexique a une des traditions graphiques les plus riches au monde. Des fresques aztèques aux murales de Diego Rivera, en passant par les cartes de Lotería que tu vois sur ce site... Voilà un petit tour d'horizon pour que tu puisses frimer devant Alex.",
+      contenu: "Le Mexique c'est pas juste des tacos et de la tequila bb. C'est un des pays avec l'identité graphique la plus forte au monde. De la Lucha Libre aux JO de 1968 en passant par Frida Kahlo — chaque époque a produit un style visuel tellement unique que tu le reconnais en une seconde. Voilà un petit tour pour que tu puisses frimer devant Alex.",
       couleur: "#D6301F",
     },
     {
-      titre: "La Lotería 🎴",
-      sousTitre: "Née en 1887",
-      contenu: "Les cartes de Lotería c'est le bingo mexicain. 54 cartes illustrées (le soleil, la lune, le diable, la sirène...) avec un style naïf ultra reconnaissable. Chaque famille mexicaine en a un jeu. Le style graphique — contours épais, couleurs saturées, composition centrée — est devenu iconique. C'est pour ça que ce site est construit comme une planche de Lotería.",
+      titre: "La Lucha Libre 🤼",
+      sousTitre: "Le catch devenu art",
+      contenu: "La Lucha Libre c'est pas juste du catch, c'est toute une esthétique. Les masques d'abord — chaque luchador a le sien, fait main, avec des motifs qui racontent son personnage. Perdre son masque c'est perdre son identité. Et autour de ça y'a les affiches : typographie massive, couleurs qui pètent, mise en page ultra frontale. Ce style graphique a influencé tout le street art mexicain. Les posters de Lucha c'est du graphisme brut, sans filtre, comme une claque visuelle. Tu verras sûrement des masques dans les marchés — c'est devenu un symbole pop du Mexique.",
       couleur: "#E8A712",
     },
     {
-      titre: "Le Muralisme 🎨",
-      sousTitre: "Rivera, Orozco, Siqueiros",
-      contenu: "Dans les années 1920, le gouvernement mexicain a demandé à des artistes de peindre l'histoire du pays sur les murs des bâtiments publics. Diego Rivera (le mari de Frida Kahlo), José Clemente Orozco et David Alfaro Siqueiros ont créé des fresques gigantesques. Tu en verras sûrement à Mexico City — le Palacio Nacional en est couvert.",
+      titre: "Mexico 68 🏅",
+      sousTitre: "Le plus beau design olympique",
+      contenu: "Les Jeux Olympiques de Mexico 1968, c'est considéré comme LE chef-d'œuvre du design olympique. Le logo a été créé par Lance Wyman, un designer américain, mais inspiré à 100% par l'art Huichol (peuple indigène du Mexique). Les lignes concentriques du logo reprennent les motifs de l'art Op Art et de l'artisanat mexicain en même temps. Le résultat c'est un système graphique complet — signalétique, affiches, pictogrammes — où tout est cohérent, tout vibre, tout ondule. C'était révolutionnaire. Encore aujourd'hui les graphistes du monde entier étudient Mexico 68 comme référence absolue. Genre c'est dans tous les livres de design, sans exception.",
       couleur: "#1E7A4C",
     },
     {
-      titre: "Le Papel Picado ✂️",
-      sousTitre: "L'art du papier découpé",
-      contenu: "Les guirlandes de papier coloré découpé que tu vois partout au Mexique, c'est du papel picado. Artisanat préhispanique, chaque motif est découpé à la main au ciseau dans du papier de soie. On les utilise pour les fêtes, le Día de los Muertos, les mariages... Regarde bien en haut de ce site, y'en a aussi.",
+      titre: "Frida Kahlo 🌺",
+      sousTitre: "La GOAT, tout simplement",
+      contenu: "Frida c'est probablement l'artiste mexicaine la plus connue au monde et c'est mérité. Polyomélyite à 6 ans, accident de bus à 18 ans qui la cloue au lit pendant des mois — elle commence à peindre depuis son lit avec un miroir au plafond. Résultat : des autoportraits d'une honnêteté brutale. Elle peint sa douleur, son corps brisé, ses fausses couches, sa relation toxique avec Diego Rivera, son identité mexicaine. Zéro filtre, zéro compromis. Et esthétiquement c'est fou — les couleurs, les fleurs, les animaux, les symboles précolombiens. Elle a transformé sa souffrance en art et son image en icône. Son visage est partout au Mexique — t-shirts, murales, tasses, tout. C'est la goat parce qu'elle a fait de l'art à partir de ce que la vie lui a envoyé dans la gueule, sans jamais tricher.",
       couleur: "#D6301F",
     },
     {
-      titre: "Les Alebrijes 🐉",
-      sousTitre: "Créatures fantastiques",
-      contenu: "Des sculptures en bois peintes de couleurs psychédéliques qui représentent des animaux fantastiques — mi-dragon, mi-jaguar, mi-n'importe-quoi. Inventés en 1936 par Pedro Linares après un rêve fiévreux. Oaxaca est LA ville des alebrijes. Si t'en vois un, ramène-le-moi (pas trop gros stp la valise est déjà pleine).",
+      titre: "Les affiches mexicaines 🖼️",
+      sousTitre: "Typographie sauvage",
+      contenu: "Le Mexique a une culture de l'affiche incroyable. Des affiches de cinéma de l'âge d'or mexicain (années 40-50) aux affiches de concerts et de corridas — le style c'est : typo énorme qui prend tout l'espace, couleurs saturées, compositions asymétriques. Y'a pas de minimalisme, y'a pas de blanc tournant, y'a pas de retenue. Tout est rempli, tout est vivant, tout crie. Et c'est magnifique. Quand tu te balades dans les rues, regarde les affiches collées sur les murs — même les pubs pour un match de foot local ont plus de personnalité graphique que 90% des designs européens.",
       couleur: "#E8A712",
     },
     {
       titre: "Maintenant tu sais 🎓",
       sousTitre: "",
-      contenu: "Voilà, t'as de quoi briller en soirée. Quand tu verras une fresque murale à Mexico, des cartes de Lotería dans un marché ou du papel picado dans une rue, tu sauras d'où ça vient. Profite bien de toute cette beauté bb.",
+      contenu: "Voilà bb, t'as de quoi briller. Quand tu verras un masque de Lucha dans un marché, un poster typé Mexico 68 ou un portrait de Frida sur un mur, tu sauras pourquoi c'est beau et d'où ça vient. Le Mexique c'est un pays qui a fait du design une seconde nature, sans même s'en rendre compte. Profite bien et ouvre les yeux grand.",
       couleur: "#1E7A4C",
     },
   ]
@@ -957,12 +957,26 @@ function PageContent() {
   const [journalEntries, setJournalEntries] = useState<Record<string, JournalEntry>>({})
   const [showTuto, setShowTuto] = useState(false)
   const [showArtPopup, setShowArtPopup] = useState(false)
+  const [showManova, setShowManova] = useState(false)
 
   const isAdmin = searchParams.get("admin") === "rojhat"
 
   useEffect(() => {
     if (!localStorage.getItem("manon-tuto-done") && !isAdmin) setShowTuto(true)
   }, [])
+
+  // Popup Manova La Grande — apparaît le 21 septembre 2026
+  useEffect(() => {
+    const now = new Date()
+    const param = new URLSearchParams(window.location.search).get("jour")
+    const jour = param || now.toISOString().split("T")[0]
+    if (jour === "2026-09-21" && !localStorage.getItem("manon-manova-popup")) {
+      const timer = setTimeout(() => {
+        if (localStorage.getItem("manon-tuto-done") && !showArtPopup) setShowManova(true)
+      }, 1500)
+      return () => clearTimeout(timer)
+    }
+  }, [showTuto, showArtPopup])
 
   // Popup art mexicain — apparaît le 19 septembre 2026
   useEffect(() => {
@@ -1064,6 +1078,30 @@ function PageContent() {
     <>
     {showTuto && <Tuto onClose={() => setShowTuto(false)} />}
     {showArtPopup && <PopupArtMexicain onClose={() => setShowArtPopup(false)} />}
+    {showManova && (
+      <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-[#1A1512]/90 backdrop-blur-sm p-4">
+        <div className="bg-[#F3E9D6] border-2 border-[#1A1512] max-w-sm w-full overflow-hidden text-center">
+          <img
+            src="/img/manova-lucha.jpg"
+            alt="Manova La Grande"
+            className="w-full"
+          />
+          <div className="p-4">
+            <h2 className="titulo text-lg text-[#D6301F]">MANOVA LA GRANDE</h2>
+            <p className="prose-lettre text-xs opacity-60 mt-1">La légende de la Lucha Libre</p>
+            <button
+              onClick={() => {
+                localStorage.setItem("manon-manova-popup", "1")
+                setShowManova(false)
+              }}
+              className="mt-4 titulo text-xs px-5 py-2 bg-[#D6301F] text-[#F3E9D6] hover:bg-[#b5281a] transition-colors"
+            >
+              VAMOS !!!
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
     {isAdmin && (
       <div className="bg-[#1A1512] text-[#F3E9D6] text-xs px-4 py-2 flex items-center justify-between sticky top-0 z-[9999]">
         <span className="titulo">ADMIN</span>
